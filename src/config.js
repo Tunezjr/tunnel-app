@@ -13,12 +13,11 @@ export const ADDRESSES = {
 };
 
 export const MARKETS = [
-  {
-    symbol: 'tUSD',
-    address: ADDRESSES.tUSD,
-    decimals: 18,
-    name: 'Test USD',
-  },
+  { symbol: 'tUSD', address: '0x7a17CCDFb69d9bDfDf52ef588028C75Ae5E42db8', decimals: 18, name: 'Test USD' },
+  { symbol: 'MON', address: '0x5DFd2e508720df6BC0F58874B5a7d99274Ef93Dc', decimals: 18, name: 'Monad' },
+  { symbol: 'sMON', address: '0xc3afCD6bd82460c5A49759Fdf35F6Cc7e84D7dC0', decimals: 18, name: 'Kintsu sMON' },
+  { symbol: 'shMON', address: '0x764eEC1fDc94347E360a67749510D88ecA13A237', decimals: 18, name: 'FastLane shMON' },
+  { symbol: 'zmETH', address: '0x25F6fA3DB38cC200Df8459b680EaA578E59DcEda', decimals: 18, name: 'Zenith mock ETH' },
 ];
 
 export const PROTOCOL = {
