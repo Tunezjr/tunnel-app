@@ -1,9 +1,19 @@
-body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #f7f7f8; color: #111; }
-main { max-width: 720px; margin: 0 auto; padding: 32px 20px; }
-header { display: flex; justify-content: space-between; align-items: center; }
-h1 { margin: 0; font-size: 28px; }
-section { margin-top: 28px; background: #fff; border: 1px solid #e6e6e8; border-radius: 16px; padding: 20px; }
-input, button { border: 1px solid #d8d8dc; border-radius: 10px; padding: 10px 14px; font-size: 15px; }
-button { background: #111; color: #fff; cursor: pointer; }
-.row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-.status { color: #555; min-height: 20px; }
+body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #e8f6ff; color: #14324a; }
+.shell { max-width: 960px; margin: 0 auto; padding: 20px; }
+.topbar { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
+.brand { font-size: 22px; }
+.sub { display: block; color: #5b7c93; font-size: 12px; }
+nav { display: flex; gap: 12px; }
+nav a { color: #14324a; text-decoration: none; font-weight: 600; }
+nav a.active { text-decoration: underline; }
+main { margin-top: 24px; background: #fff; border-radius: 18px; padding: 20px; }
+.muted { color: #5b7c93; }
+.markets { width: 100%; border-collapse: collapse; }
+.markets th, .markets td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e6eef5; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.panel { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; margin-top: 12px; }
+.row { display: flex; gap: 8px; margin-top: 10px; }
+input, button { border-radius: 10px; border: 1px solid #c9dcea; padding: 10px 12px; }
+button { background: #14324a; color: #fff; cursor: pointer; }
+.toast { position: fixed; bottom: 16px; left: 16px; background: #14324a; color: #fff; padding: 10px 12px; border-radius: 10px; }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .topbar { flex-wrap: wrap; } }

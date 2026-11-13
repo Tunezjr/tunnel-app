@@ -1,102 +1,25 @@
-import { useEffect, useState } from 'react';
-import { BrowserProvider, Contract, formatUnits, parseUnits } from 'ethers';
-import { ADDRESSES, CHAIN } from './config.js';
-import { dataProviderAbi, erc20Abi, poolAbi } from './abi.js';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppShell } from './components/AppShell.jsx';
+import { MarketsPage } from './pages/MarketsPage.jsx';
+import { MarketPage } from './pages/MarketPage.jsx';
+import { PositionPage } from './pages/PositionPage.jsx';
+import { useWallet } from './hooks/useWallet.js';
+import { useMarkets } from './hooks/useMarkets.js';
 
 export default function App() {
-  const [account, setAccount] = useState('');
-  const [status, setStatus] = useState('');
-  const [amount, setAmount] = useState('1');
-  const [walletBalance, setWalletBalance] = useState('0');
-  const [supplied, setSupplied] = useState('0');
-  const [debt, setDebt] = useState('0');
-  const [liquidity, setLiquidity] = useState('0');
-
-  async function connect() {
-    if (!window.ethereum) {
-      setStatus('No wallet found');
-      return;
-    }
-    const provider = new BrowserProvider(window.ethereum);
-    await provider.send('wallet_addEthereumChain', [{
-      chainId: '0x' + CHAIN.id.toString(16),
-      chainName: CHAIN.name,
-      nativeCurrency: { name: CHAIN.symbol, symbol: CHAIN.symbol, decimals: 18 },
-      rpcUrls: [CHAIN.rpc],
-      blockExplorerUrls: [CHAIN.explorer],
-    }]);
-    await provider.send('eth_requestAccounts', []);
-    const signer = await provider.getSigner();
-    setAccount(await signer.getAddress());
-    setStatus('Connected');
-  }
-
-  async function refresh() {
-    if (!account || !window.ethereum) return;
-    const provider = new BrowserProvider(window.ethereum);
-    const token = new Contract(ADDRESSES.tUSD, erc20Abi, provider);
-    const data = new Contract(ADDRESSES.dataProvider, dataProviderAbi, provider);
-    const [bal, decimals, reserve, user] = await Promise.all([
-      token.balanceOf(account),
-      token.decimals(),
-      data.getReserveData(ADDRESSES.tUSD),
-      data.getUserReserveData(ADDRESSES.tUSD, account),
-    ]);
-    setWalletBalance(formatUnits(bal, decimals));
-    setSupplied(formatUnits(user.currentATokenBalance, decimals));
-    setDebt(formatUnits(user.currentVariableDebt, decimals));
-    setLiquidity(formatUnits(reserve.totalAToken, decimals));
-  }
-
-  useEffect(() => {
-    refresh().catch((err) => setStatus(err.shortMessage || err.message));
-  }, [account]);
-
-  async function withSigner(action) {
-    const provider = new BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const token = new Contract(ADDRESSES.tUSD, erc20Abi, signer);
-    const pool = new Contract(ADDRESSES.pool, poolAbi, signer);
-    const parsed = parseUnits(amount || '0', 18);
-    setStatus('Waiting for wallet');
-    await action({ token, pool, parsed, user: await signer.getAddress() });
-    setStatus('Done');
-    await refresh();
-  }
+  const { account, status, setStatus, connect } = useWallet();
+  const { rows, loading, error, refresh } = useMarkets(account);
 
   return (
-    <main>
-      <header>
-        <h1>Tunnel</h1>
-        <button onClick={connect}>{account ? account.slice(0, 6) + '...' + account.slice(-4) : 'Connect'}</button>
-      </header>
-      <section>
-        <p>Chain {CHAIN.id} · tUSD</p>
-        <p>Wallet {walletBalance}</p>
-        <p>Supplied {supplied}</p>
-        <p>Borrowed {debt}</p>
-        <p>Pool liquidity {liquidity}</p>
-        <input value={amount} onChange={(e) => setAmount(e.target.value)} />
-        <div className="row">
-          <button onClick={() => withSigner(async ({ token, pool, parsed, user }) => {
-            const allowance = await token.allowance(user, ADDRESSES.pool);
-            if (allowance < parsed) await (await token.approve(ADDRESSES.pool, parsed)).wait();
-            await (await pool.supply(ADDRESSES.tUSD, parsed, user, 0)).wait();
-          })}>Supply</button>
-          <button onClick={() => withSigner(async ({ pool, parsed, user }) => {
-            await (await pool.withdraw(ADDRESSES.tUSD, parsed, user)).wait();
-          })}>Withdraw</button>
-          <button onClick={() => withSigner(async ({ pool, parsed, user }) => {
-            await (await pool.borrow(ADDRESSES.tUSD, parsed, 2, 0, user)).wait();
-          })}>Borrow</button>
-          <button onClick={() => withSigner(async ({ token, pool, parsed, user }) => {
-            const allowance = await token.allowance(user, ADDRESSES.pool);
-            if (allowance < parsed) await (await token.approve(ADDRESSES.pool, parsed)).wait();
-            await (await pool.repay(ADDRESSES.tUSD, parsed, 2, user)).wait();
-          })}>Repay</button>
-        </div>
-        <p className="status">{status}</p>
-      </section>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppShell account={account} onConnect={connect} />}>
+          <Route index element={<MarketsPage rows={rows} loading={loading} error={error} />} />
+          <Route path="market/:symbol" element={<MarketPage rows={rows} account={account} setStatus={setStatus} refresh={refresh} />} />
+          <Route path="position" element={<PositionPage rows={rows} account={account} />} />
+        </Route>
+      </Routes>
+      {status && <p className="toast">{status}</p>}
+    </BrowserRouter>
   );
 }

@@ -11,3 +11,21 @@ export const ADDRESSES = {
   dataProvider: '0x9B77808035D3298D5FBd0ab7E4237Cce1E48fb86',
   tUSD: '0x7a17CCDFb69d9bDfDf52ef588028C75Ae5E42db8',
 };
+
+export const MARKETS = [
+  {
+    symbol: 'tUSD',
+    address: ADDRESSES.tUSD,
+    decimals: 18,
+    name: 'Test USD',
+  },
+];
+
+export const PROTOCOL = {
+  app: 'Tunnel',
+  markets: 'Bikini Bottom Markets',
+  supply: 'Krusty Krab',
+  borrow: 'Boating School',
+  position: 'Pineapple',
+  health: 'How safe is your pineapple',
+};

@@ -2,9 +2,14 @@
 
 Frontend for the Tunnel market on Zenith EVM Testnet.
 
-- Chain id: 936485
-- Pool: `0xcDeBCee788b239E82F4da926E42e1ce62bc9E966`
-- tUSD: `0x7a17CCDFb69d9bDfDf52ef588028C75Ae5E42db8`
+## Layout
+
+- `src/config.js` chain, addresses, market list, protocol names
+- `src/hooks/` wallet and market data
+- `src/components/` shell, table, action panels
+- `src/pages/` markets, market detail, position
+
+Tokens keep real names. Protocol sections use Bikini Bottom names.
 
 ```bash
 npm install
