@@ -1,35 +1,46 @@
 body {
   margin: 0;
-  font-family: Allura, cursive;
+  font-family: Inter, system-ui, sans-serif;
   font-weight: 400;
+  font-style: italic;
+  line-height: 1.55;
   background: #e8f6ff;
   color: #14324a;
-  font-size: 22px;
+  font-size: 16px;
 }
-h1, h2, h3, th, .brand, strong, button {
+h1, h2, .brand {
   font-weight: 700;
+  font-style: normal;
 }
-p, td, .text, .muted, .sub, input {
+h3, th, nav a, button, strong {
+  font-weight: 600;
+  font-style: normal;
+}
+p, td, .text, .muted, .sub, input, .toast {
   font-weight: 400;
+  font-style: italic;
+  line-height: 1.55;
 }
 .shell { max-width: 960px; margin: 0 auto; padding: 20px; }
 .topbar { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
-.brand { font-size: 42px; line-height: 1; }
-.sub { display: block; color: #5b7c93; font-size: 18px; font-weight: 400; }
+.brand { font-size: 28px; line-height: 1.1; }
+.sub { display: block; color: #5b7c93; font-size: 13px; font-weight: 400; font-style: italic; }
 nav { display: flex; gap: 12px; }
-nav a { color: #14324a; text-decoration: none; font-weight: 700; font-size: 24px; }
+nav a { color: #14324a; text-decoration: none; font-weight: 600; font-style: normal; font-size: 15px; }
 nav a.active { text-decoration: underline; }
 main { margin-top: 24px; background: #fff; border-radius: 18px; padding: 20px; }
-h1 { font-size: 48px; margin: 0 0 8px; }
-h3 { font-size: 32px; margin: 0 0 8px; }
-.text, .muted { color: #5b7c93; font-weight: 400; }
+h1 { font-size: 32px; margin: 0 0 8px; }
+h3 { font-size: 20px; margin: 0 0 8px; }
+.text, .muted { color: #5b7c93; }
 .markets { width: 100%; border-collapse: collapse; }
-.markets th, .markets td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e6eef5; font-size: 22px; }
-.markets th { font-weight: 700; }
+.markets th, .markets td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e6eef5; }
+.markets th { font-weight: 600; font-style: normal; }
+.markets td { font-style: italic; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .panel { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; margin-top: 12px; }
 .row { display: flex; gap: 8px; margin-top: 10px; }
-input, button { border-radius: 10px; border: 1px solid #c9dcea; padding: 10px 12px; font-family: Allura, cursive; font-size: 22px; }
-button { background: #14324a; color: #fff; cursor: pointer; font-weight: 700; }
-.toast { position: fixed; bottom: 16px; left: 16px; background: #14324a; color: #fff; padding: 10px 12px; border-radius: 10px; font-weight: 400; }
+input, button { border-radius: 10px; border: 1px solid #c9dcea; padding: 10px 12px; font-family: Inter, system-ui, sans-serif; font-size: 15px; }
+input { font-style: italic; font-weight: 400; }
+button { background: #14324a; color: #fff; cursor: pointer; font-weight: 600; font-style: normal; }
+.toast { position: fixed; bottom: 16px; left: 16px; background: #14324a; color: #fff; padding: 10px 12px; border-radius: 10px; }
 @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .topbar { flex-wrap: wrap; } }
