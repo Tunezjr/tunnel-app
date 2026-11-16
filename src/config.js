@@ -15,9 +15,9 @@ export const ADDRESSES = {
 
 export const MARKETS = [
   { symbol: 'tUSD', address: '0x7a17CCDFb69d9bDfDf52ef588028C75Ae5E42db8', decimals: 18, name: 'Test USD', reference: 'USD peg' },
-  { symbol: 'ZEN', address: '0x5DFd2e508720df6BC0F58874B5a7d99274Ef93Dc', decimals: 18, name: 'Zen', reference: 'ZEN/USD' },
-  { symbol: 'sZEN', address: '0xc3afCD6bd82460c5A49759Fdf35F6Cc7e84D7dC0', decimals: 18, name: 'Kintsu sZEN', reference: 'ZEN + staking premium' },
-  { symbol: 'shZEN', address: '0x764eEC1fDc94347E360a67749510D88ecA13A237', decimals: 18, name: 'FastLane shZEN', reference: 'ZEN + staking premium' },
+  { symbol: 'ZTH', address: '0x5DFd2e508720df6BC0F58874B5a7d99274Ef93Dc', decimals: 18, name: 'Zenith', reference: 'ZTH/USD' },
+  { symbol: 'sZTH', address: '0xc3afCD6bd82460c5A49759Fdf35F6Cc7e84D7dC0', decimals: 18, name: 'Kintsu sZTH', reference: 'ZTH + staking premium' },
+  { symbol: 'shZTH', address: '0x764eEC1fDc94347E360a67749510D88ecA13A237', decimals: 18, name: 'FastLane shZTH', reference: 'ZTH + staking premium' },
   { symbol: 'zmETH', address: '0x25F6fA3DB38cC200Df8459b680EaA578E59DcEda', decimals: 18, name: 'Zenith mock ETH', reference: 'ETH/USD' },
 ];
 
