@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PROTOCOL } from '../config.js';
+import { Cast } from '../components/Cast.jsx';
 
 function usd(value) {
   const n = Number(value);
@@ -24,8 +25,14 @@ export function DashboardPage({ rows, accountData, account, loading, error }) {
 
   return (
     <main>
-      <h1>Dashboard</h1>
-      <p className="muted">Portfolio and protocol state for the live Tunnel market.</p>
+      <div className="hero">
+        <div>
+          <p className="eyebrow">Bikini Bottom</p>
+          <h1>Dashboard</h1>
+          <p className="muted">Portfolio and protocol state for the live Tunnel market.</p>
+        </div>
+        <img className="hero-art" src="/characters/spongebob.jpg" alt="" />
+      </div>
       {error && <p className="status">{error}</p>}
 
       <section className="statgrid">
@@ -66,9 +73,14 @@ export function DashboardPage({ rows, accountData, account, loading, error }) {
         </article>
       </section>
 
+      <Cast />
+
       <div className="grid">
         <section className="panel">
-          <h3>{PROTOCOL.supply}</h3>
+          <div className="panelhead">
+            <img src="/characters/krabs.jpg" alt="" />
+            <h3>{PROTOCOL.supply}</h3>
+          </div>
           {!supplied.length && <p className="muted">{loading ? 'Loading' : 'No supplied assets.'}</p>}
           {supplied.map((row) => (
             <div key={row.symbol} className="line">
@@ -81,7 +93,10 @@ export function DashboardPage({ rows, accountData, account, loading, error }) {
           ))}
         </section>
         <section className="panel">
-          <h3>{PROTOCOL.borrow}</h3>
+          <div className="panelhead">
+            <img src="/characters/squidward.jpg" alt="" />
+            <h3>{PROTOCOL.borrow}</h3>
+          </div>
           {!borrowed.length && <p className="muted">{loading ? 'Loading' : 'No borrowed assets.'}</p>}
           {borrowed.map((row) => (
             <div key={row.symbol} className="line">

@@ -5,9 +5,12 @@ export function AppShell({ account, onConnect }) {
   return (
     <div className="shell">
       <header className="topbar">
-        <div>
-          <strong className="brand">{PROTOCOL.app}</strong>
-          <span className="sub">Zenith testnet · chain 936485</span>
+        <div className="brandblock">
+          <img className="mark" src="/characters/spongebob.jpg" alt="" />
+          <div>
+            <strong className="brand">{PROTOCOL.app}</strong>
+            <span className="sub">Zenith testnet · chain 936485</span>
+          </div>
         </div>
         <nav>
           <NavLink to="/" end>Dashboard</NavLink>

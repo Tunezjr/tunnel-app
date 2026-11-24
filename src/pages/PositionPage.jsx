@@ -11,8 +11,14 @@ export function PositionPage({ rows, accountData, account }) {
   const active = rows.filter((row) => Number(row.supplied) > 0 || Number(row.debt) > 0);
   return (
     <main>
-      <h1>{PROTOCOL.position}</h1>
-      <p className="muted">{PROTOCOL.health}: {account ? (accountData.health === 'inf' ? 'No debt' : accountData.health === '0' ? 'No position' : Number(accountData.health).toFixed(2)) : 'connect a wallet'}</p>
+      <div className="hero">
+        <div>
+          <p className="eyebrow">Your home</p>
+          <h1>{PROTOCOL.position}</h1>
+          <p className="muted">{PROTOCOL.health}: {account ? (accountData.health === 'inf' ? 'No debt' : accountData.health === '0' ? 'No position' : Number(accountData.health).toFixed(2)) : 'connect a wallet'}</p>
+        </div>
+        <img className="hero-art" src="/characters/sandy.jpg" alt="" />
+      </div>
 
       <section className="statgrid">
         <article className="stat"><span className="label">Collateral</span><strong>{usd(accountData.collateral)}</strong></article>

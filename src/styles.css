@@ -4,47 +4,60 @@ body {
   font-weight: 400;
   font-style: italic;
   line-height: 1.55;
-  background: #e8f6ff;
+  background: #d8f3ff url('/characters/spongebob.jpg') right -40px top -20px / 280px no-repeat fixed;
   color: #14324a;
   font-size: 16px;
 }
-h1, h2, .brand {
+h1, h2, .brand, .eyebrow {
+  font-family: 'Some Time Later', Inter, system-ui, sans-serif;
   font-weight: 700;
   font-style: normal;
+  letter-spacing: 0.5px;
 }
 h3, th, nav a, button, strong, .label {
   font-weight: 600;
   font-style: normal;
 }
-p, td, .text, .muted, .sub, input, .toast, .crumbs {
+p, td, .text, .muted, .sub, input, .toast, .crumbs, figcaption {
   font-weight: 400;
   font-style: italic;
   line-height: 1.55;
 }
 .shell { max-width: 1120px; margin: 0 auto; padding: 20px; }
-.topbar { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
-.brand { font-size: 28px; line-height: 1.1; }
+.topbar { display: flex; align-items: center; gap: 16px; justify-content: space-between; background: #fff; border-radius: 18px; padding: 12px 16px; }
+.brandblock { display: flex; align-items: center; gap: 10px; }
+.mark { width: 48px; height: 48px; object-fit: contain; image-rendering: pixelated; }
+.brand { font-size: 34px; line-height: 1; }
 .sub { display: block; color: #5b7c93; font-size: 13px; font-weight: 400; font-style: italic; }
 nav { display: flex; gap: 16px; }
 nav a { color: #14324a; text-decoration: none; font-weight: 600; font-style: normal; font-size: 15px; }
 nav a.active { text-decoration: underline; }
-main { margin-top: 24px; background: #fff; border-radius: 18px; padding: 20px; }
-h1 { font-size: 32px; margin: 0 0 8px; }
-h3 { font-size: 20px; margin: 0 0 8px; }
+main { margin-top: 16px; background: rgba(255,255,255,0.94); border-radius: 18px; padding: 20px; }
+.hero { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.hero-art { width: 120px; height: 120px; object-fit: contain; image-rendering: pixelated; }
+.eyebrow { margin: 0; color: #1a6aa8; font-size: 22px; }
+h1 { font-size: 48px; margin: 0 0 8px; }
+h3 { font-size: 22px; margin: 0; }
 .text, .muted { color: #5b7c93; }
 .status { color: #8a2b2b; }
 .crumbs a { color: #14324a; }
 .statgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
-.stat { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; }
+.stat { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; background: #f7fcff; }
 .stat strong { display: block; font-size: 20px; margin-top: 6px; }
 .label { color: #5b7c93; font-size: 13px; }
+.cast { display: flex; gap: 12px; overflow-x: auto; margin: 8px 0 16px; }
+.cast figure { margin: 0; text-align: center; min-width: 88px; }
+.cast img { width: 72px; height: 72px; object-fit: contain; image-rendering: pixelated; background: #fff; border-radius: 12px; border: 1px solid #d7e7f3; }
+.cast figcaption { font-size: 12px; color: #5b7c93; }
 .tablewrap { overflow-x: auto; }
 .markets { width: 100%; border-collapse: collapse; min-width: 860px; }
 .markets th, .markets td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e6eef5; }
 .markets th { font-weight: 600; font-style: normal; }
 .markets td { font-style: italic; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.panel { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; margin-top: 12px; }
+.panel { border: 1px solid #d7e7f3; border-radius: 14px; padding: 14px; margin-top: 12px; background: #fff; }
+.panelhead { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.panelhead img { width: 40px; height: 40px; object-fit: contain; image-rendering: pixelated; }
 .line { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eef4f8; }
 .row { display: flex; gap: 8px; margin-top: 10px; }
 input, button { border-radius: 10px; border: 1px solid #c9dcea; padding: 10px 12px; font-family: Inter, system-ui, sans-serif; font-size: 15px; }
@@ -56,4 +69,6 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   .statgrid { grid-template-columns: 1fr 1fr; }
   .grid { grid-template-columns: 1fr; }
   .topbar { flex-wrap: wrap; }
+  h1 { font-size: 36px; }
+  .hero-art { width: 80px; height: 80px; }
 }
